@@ -154,13 +154,13 @@ function updateHeader() {
     
     // Если на главной странице - показываем меню пользователя
     if (userMenu) {
-      const nameElement = userMenu.querySelector('p');
+      const nameElement = userMenu.querySelector('.user-name');
       if (nameElement && user.name) {
         nameElement.textContent = user.name;
       }
       
       // Удаляем старые обработчики и добавляем новый
-      const logoutLink = userMenu.querySelector('a');
+      const logoutLink = userMenu.querySelector('.logout-link');
       if (logoutLink) {
         logoutLink.onclick = function(e) {
           e.preventDefault();
