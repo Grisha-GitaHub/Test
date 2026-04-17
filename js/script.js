@@ -154,14 +154,19 @@ function updateHeader() {
     
     // Если на главной странице - показываем меню пользователя
     if (userMenu) {
-      userMenu.querySelector('p').textContent = user.name;
+      const nameElement = userMenu.querySelector('p');
+      if (nameElement && user.name) {
+        nameElement.textContent = user.name;
+      }
       
       // Удаляем старые обработчики и добавляем новый
       const logoutLink = userMenu.querySelector('a');
-      logoutLink.onclick = function(e) {
-        e.preventDefault();
-        logout();
-      };
+      if (logoutLink) {
+        logoutLink.onclick = function(e) {
+          e.preventDefault();
+          logout();
+        };
+      }
     }
     
     // Скрываем кнопку "Войти" если она есть
@@ -176,10 +181,10 @@ function updateHeader() {
   }
 }
 
-// Запускаем обновление при загрузке
-if (window.location.pathname.includes('index.html') || window.location.pathname === '/') {
+// Запускаем обновление при загрузке страницы
+document.addEventListener('DOMContentLoaded', function() {
   updateHeader();
-}
+});
 
 // Перенаправление если не авторизован
 function requireAuth() {
